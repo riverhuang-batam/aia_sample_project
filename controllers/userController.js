@@ -17,16 +17,16 @@ module.exports = {
       res.json({ err });
     }
   },
-  getUserEmail: async(req, res) => {
-    try {
-      const findUserEmail = await User.find({_id: req.params.id})
-      .populate('email')
-      .exec()
-      res.status(200).json(findUserEmail)
-    } catch (err) {
-      res.json({err})
-    }
-  },
+  // getUserEmail: async(req, res) => {
+  //   try {
+  //     const findUserEmail = await User.find({_id: req.params.id})
+  //     .populate('email')
+  //     .exec()
+  //     res.status(200).json(findUserEmail)
+  //   } catch (err) {
+  //     res.json({err})
+  //   }
+  // },
   updateUser: async (req, res) => {
     try {
       const paramsId = await parseInt(req.params.id);
