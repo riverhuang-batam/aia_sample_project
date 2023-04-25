@@ -58,8 +58,9 @@ module.exports = {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
+      console.log(user)
       if (user.password === password) {
-        res.json({ match: true });
+        res.json({ userId: user._id, match: true });
       }
     } catch (err) {
       res.json({ err: "wrong password madge" });
@@ -67,11 +68,11 @@ module.exports = {
   },
   requestotp: async (req, res) => {
     try {
-      const { otp, email } = req.body;
+      const { otp, id } = req.body;
       if (otp === "111111") {
         const token = await jwt.sign(
           {
-            email,
+            id,
           },
           "secret_key",
           {
