@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const mongoose = require("mongoose");
 const User = require("../models/user");
+const Email = require("../models/email");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -14,6 +15,16 @@ module.exports = {
       res.status(200).json(getProfileById);
     } catch (err) {
       res.json({ err });
+    }
+  },
+  getUserEmail: async(req, res) => {
+    try {
+      const findUserEmail = await User.find({_id: req.params.id})
+      .populate('email')
+      .exec()
+      res.status(200).json(findUserEmail)
+    } catch (err) {
+      res.json({err})
     }
   },
   updateUser: async (req, res) => {
