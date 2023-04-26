@@ -59,11 +59,15 @@ module.exports = {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
       console.log(user)
-      if (user.password === password) {
+      if(!user){
+        res.json({message: "user not found"})
+      } else if (user.password === password) {
         res.json({ userId: user._id, match: true });
+      } else if(user.password !== password){
+        res.json({error: "username or password is wrong", match: false})
       }
     } catch (err) {
-      res.json({ err: "wrong password madge" });
+      res.json({ err: "something wrong maybe user or password is wrong" });
     }
   },
   requestotp: async (req, res) => {
