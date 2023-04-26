@@ -28,8 +28,8 @@ module.exports = {
         _id: new mongoose
               .Types
               .ObjectId(),
-              body: req.body.body,
-              createByUser: req.body.userId
+        body: req.body.body,
+        createByUser: req.body.userId
       })
       const newEmail = email.save()
       res.status(200).json(newEmail)

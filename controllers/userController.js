@@ -7,10 +7,10 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   getProfile: async (req, res) => {
-    // console.log(res.user.id.email)
+    console.log(res.user.id.id)
     try {
       const getProfileById = await User.find({
-        email: res.user.id.email,
+        _id: res.user.id.id,
       }).select("name email phone");
       res.status(200).json(getProfileById);
     } catch (err) {
