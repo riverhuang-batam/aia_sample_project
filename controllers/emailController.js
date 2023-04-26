@@ -2,9 +2,17 @@ const mongoose = require("mongoose");
 const Email = require("../models/email");
 const User = require("../models/user")
 module.exports = {
+  getEmailById: async (req, res) => {
+    try {
+      const findEmail = await Email.find({_id: req.params.id})
+      .populate({path: 'createByUser', select: '_id email name phone'})
+      .exec()
+      res.status(200).json(findEmail)
+    } catch (err) {
+      res.json({ err: err });
+    }
+  },
   getEmailByUserId: async (req, res) => {
-    console.log(req.params.id)
-    console.log('it works getemail')
     try {
       const findEmail = await Email.find({createByUser: req.params.id})
       .populate({path: 'createByUser', select: '_id email name phone'})
