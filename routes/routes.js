@@ -48,7 +48,7 @@ router.patch("/updateuser/:id", userController.updateUser)
 router.patch("/updateuserpassword/:id", checkToken, userController.updateUserPassword)
 router.get("/getemailbyid/:id", checkToken, emailController.getEmailById)
 router.get("/getemailbyuserid/:id", checkToken, emailController.getEmailByUserId)
-router.post("/createemail/", checkToken, emailController.createEmailTemplateByUserId)
+router.post("/createemail", checkToken, emailController.createEmailTemplateByUserId)
 router.patch("/updateemail/:id", checkToken, emailController.updateEmailTemplate)
 router.delete("/deleteemail/:id", checkToken, emailController.deleteEmailTemplate)
 module.exports = router;
